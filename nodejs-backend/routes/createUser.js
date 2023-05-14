@@ -5,7 +5,7 @@ var router = express.Router();
 router.post("/", function (req, res, next) {});
 
 router.get("/", function (req, res, next) {
-  res.send('respond with a resourcea<script src="/reload/reload.js"></script>');
+  res.send("respond with a resource!");
 });
 
 module.exports = router;
