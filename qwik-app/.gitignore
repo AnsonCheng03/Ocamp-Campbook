@@ -1,0 +1,13 @@
+# Build
+/dist
+/lib
+/lib-types
+/server
+
+# Development
+node_modules
+*.local
+
+# Yarn
+.yarn/*
+!.yarn/releases
