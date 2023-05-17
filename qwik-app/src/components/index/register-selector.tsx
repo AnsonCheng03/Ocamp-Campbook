@@ -13,7 +13,7 @@ export default component$(() => {
 
   return (
     <div class="userAuth">
-      {session.value?.user ? (
+      {session.value ? (
         <button onClick$={() => signOut.submit({ callbackUrl: "/" })}>
           Sign Out
         </button>
