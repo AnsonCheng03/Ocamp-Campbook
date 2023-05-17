@@ -1,14 +1,12 @@
 import { component$ } from "@builder.io/qwik";
-import { Link } from "@builder.io/qwik-city";
-import PlaceHolder from "./components/placeholder";
-import style from "./register-selector.module.css";
+import { Form } from "@builder.io/qwik-city";
+import { useAuthSignin } from "~/routes/plugin@auth";
 
 export default component$(() => {
+  const signIn = useAuthSignin();
   return (
-    <div class={style.box}>
-      <PlaceHolder />
-      {/* <Login />
-      <Register /> */}
-    </div>
+    <Form action={signIn}>
+      <button>Sign In</button>
+    </Form>
   );
 });
