@@ -18,8 +18,8 @@ export const { onRequest, useAuthSession, useAuthSignin, useAuthSignout } =
         ): Promise<User | null> {
           const users = [
             {
-              username: "test",
-              password: "test",
+              username: "123",
+              password: "123",
             },
             {
               username: "OCamp",
