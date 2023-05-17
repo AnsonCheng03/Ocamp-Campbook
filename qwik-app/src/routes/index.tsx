@@ -1,12 +1,16 @@
 import { component$ } from "@builder.io/qwik";
-import RegisterSelector from "../components/index/register-selector";
+import { useAuthSession } from "~/routes/plugin@auth";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import RegisterSelector from "~/components/login/loginForm";
+import ControlPanel from "~/routes/controlPanel/controlPanel";
 
 // https://colorhunt.co/palette/f5f0bbdbdfaab3c89073a9ad
 export default component$(() => {
+  const session = useAuthSession();
+
   return (
-    <div>
-      <RegisterSelector />
+    <div class="userAuth">
+      {session.value ? <ControlPanel /> : <RegisterSelector />}
     </div>
   );
 });
