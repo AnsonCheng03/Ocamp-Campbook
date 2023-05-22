@@ -6,18 +6,22 @@ const logger = require("morgan");
 const { MongoClient } = require("mongodb");
 const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
+const dotenv = require("dotenv");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/createUser");
 
-const uri =
-  "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority";
+dotenv.config();
 
-const liveReloadServer = livereload.createServer();
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => {
-    liveReloadServer.refresh("/");
-  }, 100);
+const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER}.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`;
+const client = new MongoClient(uri);
+client.connect((err) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+
+  console.log("Connected to MongoDB");
 });
 
 const app = express();
