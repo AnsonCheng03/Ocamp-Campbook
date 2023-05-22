@@ -1,13 +1,17 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var livereload = require("livereload");
-var connectLiveReload = require("connect-livereload");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const { MongoClient } = require("mongodb");
+const livereload = require("livereload");
+const connectLiveReload = require("connect-livereload");
 
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/createUser");
+const indexRouter = require("./routes/index");
+const usersRouter = require("./routes/createUser");
+
+const uri =
+  "mongodb+srv://<username>:<password>@<cluster>.mongodb.net/<database>?retryWrites=true&w=majority";
 
 const liveReloadServer = livereload.createServer();
 liveReloadServer.server.once("connection", () => {
@@ -16,7 +20,7 @@ liveReloadServer.server.once("connection", () => {
   }, 100);
 });
 
-var app = express();
+const app = express();
 
 app.use(connectLiveReload());
 
